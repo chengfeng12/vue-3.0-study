@@ -5,10 +5,12 @@
   <p>{{msg}}</p>
   <p ref="domP"></p>
   <teleportModal></teleportModal>
+  <EmitsCom @click="myClick"></EmitsCom>
 </template>
 
 <script>
-import teleportModal from './Teleport.vue'
+import teleportModal from './Teleport.vue';
+import EmitsCom from './Emits.vue';
 import {reactive, computed, onMounted, onUnmounted, ref, toRefs, watch} from "vue";
 export default {
   name: 'HelloWorld',
@@ -16,7 +18,13 @@ export default {
     msg: String
   },
   components: {
-    teleportModal
+    teleportModal,
+    EmitsCom
+  },
+  methods: {
+    myClick() {
+      console.log("click 触发了")
+    }
   },
   setup() {
     /* 也可以直接写在 setup 函数中，当业务过多时，会显得代码冗余，写在外部，也可方便代码复用 */
@@ -31,7 +39,7 @@ export default {
     const domP = ref(null);
 
     /* 监听器 */
-    watch(counter, (val, oldVal) => {
+    watch(counter, (oldVal, val) => {
       let p = domP.value;
       p.textContent =  `domP value from ${val} -- oldVal ${oldVal}`;
     })
