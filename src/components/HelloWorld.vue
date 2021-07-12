@@ -4,16 +4,19 @@
   <p>data.dobuleCounter is: {{ doubleCounter }}</p>
   <p>{{msg}}</p>
   <p ref="domP"></p>
-
+  <teleportModal></teleportModal>
 </template>
 
 <script>
-// 创建响应式 的数据
+import teleportModal from './Teleport.vue'
 import {reactive, computed, onMounted, onUnmounted, ref, toRefs, watch} from "vue";
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+    teleportModal
   },
   setup() {
     /* 也可以直接写在 setup 函数中，当业务过多时，会显得代码冗余，写在外部，也可方便代码复用 */
@@ -42,6 +45,7 @@ export default {
   }
 }
 function useCounter() {
+  // 创建响应式 的数据
   const data = reactive({
     counter: 0,
     doubleCounter: computed(() => data.counter * 2)
