@@ -10,3 +10,12 @@ body {
   padding: 0;
   position: relative;
 }
+
+.blue {
+  color: #198fff;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.underline:hover {
+  text-decoration: underline;
+}
